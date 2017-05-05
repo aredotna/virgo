@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "dev": "sls offline start",
+    "deploy": "sls deploy -v",
+    "test": "mocha test"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.48.0",
+    "axios": "^0.16.1",
+    "crypto": "^0.0.3",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0",
+    "sharp": "^0.17.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "mocha": "^3.3.0",
+    "nf": "^0.0.3",
+    "serverless-offline": "^3.13.5",
+    "should": "^11.2.1"
+  }
+}
