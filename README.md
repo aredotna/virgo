@@ -3,33 +3,17 @@
 ## URL Format
 
 ```
-https://<ENDPOINT>/<TOKEN>?op=<OP>&url=<URL>&...
+https://<ENDPOINT>/<TOKEN>/<OP>/<WIDTH>X<HEIGHT>/<QUALITY>/<URL>
 ```
 
 `ENDPOINT` is the bucket static hosting endpoint.
 
-`TOKEN` is generated server-side by taking the HMAC-SHA1 of the query string and signing it with your `SECRET_KEY`.
+`TOKEN` is generated server-side by taking the HMAC-SHA1 of the query string and signing it with your `SECRET_KEY`
 
 `OP` is the operation you want to perform. Available options are `resize` and `crop`
 
-`URL` is the image URL you want to perform the operation on.
+`WIDTH` self-explanatory
 
-## Options
+`HEIGHT` self-explanatory
 
-### Resize
-
-Required: `width`, `height`  
-Optional: `quality`
-
-### Crop
-
-Required: `width`, `height`  
-Optional: `quality`
-
------
-
-## Example
-
-```
-TODO
-```
+`URL` is the image URL you want to perform the operation on. URI encoded.
