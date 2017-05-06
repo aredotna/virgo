@@ -3,6 +3,7 @@
 const parse = require('./lib/parse');
 const render = require('./lib/render');
 const resize = require('./lib/resize');
+const tokenize = require('./lib/tokenize');
 const validateToken = require('./lib/validate_token');
 
 const prep = (key) => {
@@ -16,8 +17,8 @@ const prep = (key) => {
   }
 };
 
-module.exports.exec = (event, context, callback) => {
-  prep(event.queryStringParameters.key)
+module.exports.exec = (e, ctx, cb) => {
+  prep(e.queryStringParameters.key)
     .then(options => {
       switch (options.op) {
         case 'resize':
@@ -32,21 +33,29 @@ module.exports.exec = (event, context, callback) => {
     })
 
     .then(url => {
-      callback(null, render.json(url));
+      cb(null, render.json(url));
     })
 
     .catch(err =>
-      callback(err)
+      cb(err)
     );
 };
 
-module.exports.debug = (event, context, callback) => {
-  prep(event.queryStringParameters.key)
+module.exports.sign = (e, ctx, cb) => {
+  cb(null, render.json(tokenize(e.queryStringParameters.key)))
+};
+
+module.exports.debug = (e, ctx, cb) => {
+  prep(e.queryStringParameters.key)
     .then(options =>
-      callback(null, render.json(options))
+      cb(null, render.json(options))
     )
 
     .catch(err =>
-      callback(err)
+      cb(err)
     );
+};
+
+module.exports.event = (e, ctx, cb) => {
+  cb(null, render.json(e));
 };

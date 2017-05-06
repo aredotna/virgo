@@ -8,7 +8,7 @@ provider:
   runtime: nodejs6.10
   iamRoleStatements:
     - Effect: Allow
-      Resource: arn:aws:s3:::${env:AWS_S3_BUCKET}/processed*
+      Resource: arn:aws:s3:::${env:AWS_S3_BUCKET}/*
       Action:
         - s3:ListBucket
         - s3:PutObject
@@ -30,9 +30,23 @@ functions:
           method: get
           path: exec
 
+  sign:
+    handler: handler.sign
+    events:
+      - http:
+          method: get
+          path: sign
+
   debug:
     handler: handler.debug
     events:
       - http:
           method: get
           path: debug
+
+  event:
+    handler: handler.event
+    events:
+      - http:
+          method: get
+          path: event
