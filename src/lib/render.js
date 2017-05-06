@@ -1,7 +1,6 @@
 module.exports.json = body => ({
   statusCode: '200',
-  contentType: 'application/json',
-  body,
+  body: JSON.stringify(body),
 });
 
 module.exports.redirect = url => ({
