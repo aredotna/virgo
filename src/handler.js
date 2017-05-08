@@ -43,7 +43,7 @@ module.exports.sign = (e, ctx, cb) => {
   const url = e.queryStringParameters.key.replace(parser.stem, '');
   const encoded = encodeURIComponent(url);
   const key = e.queryStringParameters.key.replace(url, encoded);
-  cb(null, render.redirect(tokenize(key)));
+  cb(null, render.redirect(`exec?key=${tokenize(key)}/${e.queryStringParameters.key}`));
 };
 
 module.exports.debug = (e, ctx, cb) => {
