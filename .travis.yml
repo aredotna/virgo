@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 - '6'
+sudo: required
+services:
+  - docker
 before_install:
 - 'npm install -g yarn'
 install:
