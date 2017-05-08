@@ -1,6 +1,10 @@
 language: node_js
 node_js:
 - '6'
+before_install:
+- 'npm install -g yarn'
+install:
+- 'cd src && yarn && cd ..'
 script:
 - 'cd src && yarn test && cd ..'
 - 'make package'
