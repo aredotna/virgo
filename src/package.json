@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "dev": "foreman run sls offline start",
-    "deploy": "foreman run sls deploy --verbose",
-    "test": "foreman run -e .env.test mocha test",
-    "info": "foreman run sls info"
+    "dev": "nf run sls offline start",
+    "deploy": "nf run sls deploy --verbose",
+    "test": "nf run -e .env.test mocha test",
+    "info": "nf run sls info"
   },
   "dependencies": {
     "aws-sdk": "^2.48.0",
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "eslint": "^3.19.0",
+    "foreman": "^2.0.0",
     "mocha": "^3.3.0",
     "should": "^11.2.1"
   }
