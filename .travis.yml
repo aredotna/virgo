@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+- '6'
+script:
+- 'cd src && yarn test && cd ..'
+- 'make package'
+- 'cd build && yarn run deploy && cd ..'
