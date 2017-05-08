@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "nf run sls offline start",
-    "deploy": "nf run sls deploy --verbose",
+    "deploy": "sls deploy --verbose",
     "test": "nf run -e .env.test mocha test",
     "info": "nf run sls info"
   },
