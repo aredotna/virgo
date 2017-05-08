@@ -17,10 +17,12 @@ module.exports = ({ key, url, width, height, quality }) => {
         .max()
         .withoutEnlargement()
         .rotate()
-        .quality(quality)
         .sharpen()
         .withMetadata()
-        .toFormat('jpeg')
+        .jpeg({
+          quality,
+          force: false, // Attempt to use input format
+        })
         .toBuffer()
     )
 
