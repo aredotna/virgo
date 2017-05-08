@@ -12,4 +12,4 @@ before_install:
 install:
 - make package
 script:
-- cd build && yarn run deploy && cd ..
+- cd build && yarn run deploy-prod && cd ..
