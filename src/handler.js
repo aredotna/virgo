@@ -7,7 +7,7 @@ const tokenize = require('./lib/tokenize');
 const validateToken = require('./lib/validate_token');
 
 const prep = (key) => {
-  const options = parser(key);
+  const options = parser.parse(key);
   const { token, path } = options;
 
   if (validateToken(token, path)) {
@@ -31,7 +31,7 @@ module.exports.exec = (e, ctx, cb) => {
     })
 
     .then(url => {
-      cb(null, render.json(url));
+      cb(null, render.redirect(url));
     })
 
     .catch(err =>
@@ -43,7 +43,7 @@ module.exports.sign = (e, ctx, cb) => {
   const url = e.queryStringParameters.key.replace(parser.stem, '');
   const encoded = encodeURIComponent(url);
   const key = e.queryStringParameters.key.replace(url, encoded);
-  cb(null, render.json(tokenize(key)));
+  cb(null, render.redirect(tokenize(key)));
 };
 
 module.exports.debug = (e, ctx, cb) => {
