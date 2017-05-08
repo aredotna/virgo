@@ -1,4 +1,12 @@
-module.exports = (input) => {
+const stem = new RegExp(/\D+\/\d+x\d+\/\d+\//);
+const valid = new RegExp(`\\w+\/${stem.source}.+$`);
+
+const validate = (input) =>
+  !!input.match(valid);
+
+const parse = (input) => {
+  if (!validate(input)) throw new Error(`[BadRequest] Malformed key ${input}`);
+
   const parts = input.split('/');
 
   const token = parts[0];
@@ -35,4 +43,12 @@ module.exports = (input) => {
     quality,
     url,
   };
+};
+
+
+module.exports = {
+  parse,
+  stem,
+  valid,
+  validate,
 };
