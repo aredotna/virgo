@@ -35,6 +35,6 @@ module.exports = ({ key, url, width, height, quality }) => {
     )
 
     .then(() =>
-      `https://${AWS_S3_BUCKET}.s3.amazonaws.com/${key}`
+      `http://${AWS_S3_BUCKET}.s3-website-us-east-1.amazonaws.com/${key}`
     );
 };
