@@ -4,8 +4,6 @@ node_js:
 before_install:
 - 'npm install -g yarn'
 install:
-- 'cd src && yarn && cd ..'
-script:
-- 'cd src && yarn test && cd ..'
 - 'make package'
+script:
 - 'cd build && yarn run deploy && cd ..'
