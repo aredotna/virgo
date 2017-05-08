@@ -1,13 +1,13 @@
 'use strict';
 
-const parse = require('./lib/parse');
+const parser = require('./lib/parser');
 const render = require('./lib/render');
 const resize = require('./lib/resize');
 const tokenize = require('./lib/tokenize');
 const validateToken = require('./lib/validate_token');
 
 const prep = (key) => {
-  const options = parse(key);
+  const options = parser(key);
   const { token, path } = options;
 
   if (validateToken(token, path)) {
@@ -23,13 +23,11 @@ module.exports.exec = (e, ctx, cb) => {
       switch (options.op) {
         case 'resize':
           return resize(options);
-          break;
-
-        default:
+        default: {
           const err = new Error(`[BadRequest] Required param <op> not specified: ${JSON.stringify(options)}`);
           return Promise.reject(err);
-          break;
-      };
+        }
+      }
     })
 
     .then(url => {
@@ -42,7 +40,10 @@ module.exports.exec = (e, ctx, cb) => {
 };
 
 module.exports.sign = (e, ctx, cb) => {
-  cb(null, render.json(tokenize(e.queryStringParameters.key)))
+  const url = e.queryStringParameters.key.replace(parser.stem, '');
+  const encoded = encodeURIComponent(url);
+  const key = e.queryStringParameters.key.replace(url, encoded);
+  cb(null, render.json(tokenize(key)));
 };
 
 module.exports.debug = (e, ctx, cb) => {
