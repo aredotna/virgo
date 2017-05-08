@@ -3,10 +3,13 @@ node_js:
 - '6'
 sudo: required
 services:
-  - docker
+- docker
+env:
+  secure: Sb537qMaGumRhSVRVM7GfH1fnLmfxiQvnVJsPN2H/eKF//fzoZuk4ArrKklgq1xZ6ajpG6PtocicBoGvPihQKTgLuzZpgRUkO0dvlhOGRWMsTqFcXpKhQ/Ss2W4YJ50c+iLSyegfSE7E5ZgMJpam1v9PFD2XU+Am2KWTMvKDEXXAGYqbpBDs5EZB+MMA6rDCEUDzQmwY8afs5Jx83ENog2/17LBZsEfwKP58dWAy52PuKpyBPLtWGXdrFrrkC2Z1uStEiKyfPAqotutLG5KoJ2hy+Mt8azWb+ZouuX1SW966zkrfyAtcrAiyqMM+11MOeUSrQHllD+Tdrt+myIODkdn76HFzy8ybK7rDg1xwV4jK6tbQbdYs0XE20kUnQ3vEMYX3hHd4mpxwQvFyEzgXO14LjWeN/Fh320kBH9C/RchNxEVbRzU1TKorrfmF9+gqhIlQmeyLtlzjiP+mNDtd26yJDfpxbkzQkIq/qAuWoRECnhqMKnwbv65o+yak7aE2eT5VDWk+qCoGgct5PEmDHG+IzQHqYy7EQwNDcZfEa+OWF1snuSI3SRosaMtIucaLbcTgJ/aWNqpf2Mo7htsW2ZUaqAx9JAq45mlmczThuGXcMbwM7Lr/iz8QQE/H5PUFKiwklHpvkpVdpeRJ9RkTb0igil/Pso4P3Ozc95MoAP4=
 before_install:
-- 'npm install -g yarn'
+- npm install -g serverless
+- npm install -g yarn
 install:
-- 'make package'
+- make package
 script:
-- 'cd build && yarn run deploy && cd ..'
+- cd build && yarn run deploy && cd ..
